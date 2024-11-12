@@ -1,0 +1,17 @@
+{
+  "name": "image-resizer",
+  "version": "1.0.0",
+  "description": "a simple image resizer",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pica": "^9.0.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
