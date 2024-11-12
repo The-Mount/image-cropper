@@ -670,8 +670,10 @@ function processFile(file, cropSize) {
     });
 }
 function handleUserEntry() {
-    if (resolutionDropdown.value && customResWidth.value || customResHeight.value) alert("Please use only the dropdown or a custom size");
-    else if (customResWidth.value && customResHeight.value) {
+    if (resolutionDropdown.value && (customResWidth.value || customResHeight.value)) {
+        console.log(Boolean(resolutionDropdown.value));
+        alert("Please use only the dropdown or a custom size");
+    } else if (customResWidth.value && customResHeight.value) {
         cropSize.width = customResWidth.value;
         cropSize.height = customResHeight.value;
         handleFiles(rawImages, cropSize);
