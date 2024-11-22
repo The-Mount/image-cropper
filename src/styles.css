@@ -33,7 +33,6 @@ hr {
 
 #drop-area {
   width: 100%;
-  max-width: 500px;
   height: 200px;
   border: 2px dashed #553377;
   border-radius: 10px;
@@ -53,10 +52,17 @@ hr {
   background-color: #fcf9f0;
 }
 
+.header {
+  text-align: center;
+}
+
+.wrapper {
+  width: 600px;
+}
+
 .file-counter {
   margin: 20px 0px;
   padding: 10px 20px;
-  width: 500px;
   background-color: #6cc5e9;
   border-radius: 5px;
   text-align: center;
@@ -78,7 +84,6 @@ hr {
   flex-direction: column;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 500px;
   justify-content: center;
 }
 
@@ -159,8 +164,8 @@ button:disabled {
 #preview-list {
   list-style: none;
   width: 100%;
-  max-width: 500px;
   margin-bottom: 20px;
+  word-break: break-all;
 }
 
 #preview-list li {
@@ -179,7 +184,7 @@ button:disabled {
 }
 
 #preview-list div {
-  margin-left: 10px;
+  margin: 0px 10px;
 }
 
 #preview-list .download-button {
@@ -194,6 +199,7 @@ button:disabled {
 
 #preview-list .image-name {
   margin-left: auto;
+  margin-bottom: 10px;
 }
 #preview-list li:first-child {
   border-radius: 0px 0px 5px 5px;
@@ -201,7 +207,6 @@ button:disabled {
 }
 
 .download-all {
-  max-width: 500px;
   width: 100%;
 }
 
@@ -226,4 +231,10 @@ button:disabled {
 
 .resolution-select.hidden {
   display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 100%;
+  }
 }
