@@ -4,68 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Cropper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/index.4d663569.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/smartcrop/2.0.5/smartcrop.min.js"></script>
 </head>
 <body>
-  <div class="header">
-    <h1>Simple image cropper</h1>
-    <p>Use this tool to crop and compress any image</p>
-  </div>
-  <div class="wrapper">
-    <div id="drop-area">
-      <p>Drag & drop images here</p>
-    </div>
-    <div class="file-counter hidden">
-      <p>5 images ready for cropping</p>
-    </div>
-    <div class="resolution-select hidden">
-      <span class="form-heading">Choose a size</span>
-      <hr>
-      <label for="resolution-dropdown">Image size</label>
-      <span class="field-info">For image size reference, consult our <a href="https://www.msmu.edu/component-library/content-types/" target="_blank">content type library</a></span>
-      <select id="resolution-dropdown" autocomplete="off">
-        <option value="" selected="">Use custom size</option>
-        <option disabled="">--Landscape--</option>
-        <option value="740x494">740 x 494 px</option>
-        <option value="860x484">860 x 484 px</option>
-        <option value="1440x610">1440 x 617 px</option>
-        <option value="1440x810">1440 x 810 px</option>
-        <option value="1600x800">1600 x 800 px</option>
-        <option disabled="">--Portrait--</option>
-        <option value="735x980">735 x 980 px</option>
-        <option value="555x740">555 x 740 px</option>
-        <option disabled="">--Square--</option>
-        <option value="500x500">500 x 500 px</option>
-      </select>
-      
-      <br>
-      <span class="form-heading">Or enter a custom size</span>
-      <hr>
-      <br>
-      <div class="custom-resolution">
-        <div>
-          <label for="width">Image width</label>
-          <input type="number" id="width" autocomplete="off">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="header">
+        <h1>Bulk image cropper</h1>
+        <p>Auto-crop a batch fast, then tweak only the ones you need.</p>
+      </div>
+      <div class="upload-block">
+        <div id="drop-area">
+          <p>Drag & drop images</p>
         </div>
-        <span>x</span>
-        <div>
-          <label for="height">Image height</label>
-          <input type="number" id="height" autocomplete="off">
+        <input id="file-input" type="file" accept="image/*" multiple="" class="visually-hidden">
+        <button id="upload-button" class="secondary-button">Upload files</button>
+      </div>
+      <div class="file-counter hidden">
+        <p>5 images ready for cropping</p>
+      </div>
+      <div class="resolution-select hidden">
+        <span class="form-heading">Choose a size</span>
+        <hr>
+        <label for="resolution-dropdown">Image size</label>
+        <span class="field-info">For image size reference, consult our <a href="https://www.msmu.edu/component-library/content-types/" target="_blank">content type library</a></span>
+        <select id="resolution-dropdown" autocomplete="off">
+          <option value="" selected="">Use custom size</option>
+          <option disabled="">--Landscape--</option>
+          <option value="740x494">740 x 494 px</option>
+          <option value="860x484">860 x 484 px</option>
+          <option value="1440x610">1440 x 617 px</option>
+          <option value="1440x810">1440 x 810 px</option>
+          <option value="1600x800">1600 x 800 px</option>
+          <option disabled="">--Portrait--</option>
+          <option value="735x980">735 x 980 px</option>
+          <option value="555x740">555 x 740 px</option>
+          <option disabled="">--Square--</option>
+          <option value="500x500">500 x 500 px</option>
+        </select>
+        
+        <br>
+        <span class="form-heading">Or enter a custom size</span>
+        <hr>
+        <br>
+        <div class="custom-resolution">
+          <div>
+            <label for="width">Image width</label>
+            <input type="number" id="width" autocomplete="off">
+          </div>
+          <span>x</span>
+          <div>
+            <label for="height">Image height</label>
+            <input type="number" id="height" autocomplete="off">
+          </div>
+        </div>
+        <button id="apply-resolution">Apply resolution</button>
+      </div>
+      <div class="loader hidden" id="loader"></div>
+      <button class="download-all hidden">Download all cropped images</button>
+    </aside>
+    <main class="queue-area">
+      <div class="queue-header">
+        <div class="finished-heading hidden">
+          <p class="form-heading">Image queue</p>
+          <hr>
         </div>
       </div>
-      <button id="apply-resolution">Apply resolution</button>
-    </div>
-    <div class="loader hidden" id="loader">
-    </div>
-    <div class="finished-heading hidden">
-      <p class="form-heading">Cropped images</p>
-      <hr>
-    </div>
-    <ul id="preview-list"></ul>
-    <button class="download-all hidden">Download all cropped images</button>
+      <ul id="preview-list"></ul>
+    </main>
   </div>
   <script src="/index.0641b553.js" defer=""></script>
   
