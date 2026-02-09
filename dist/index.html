@@ -16,21 +16,21 @@
   <div class="app-shell">
     <aside class="sidebar">
       <div class="header">
-        <h1>Bulk image cropper</h1>
-        <p>Auto-crop a batch fast, then tweak only the ones you need.</p>
+        <h1>Simple image cropper v2</h1>
+        <p>Crop and compress any number of images, ready for posting to the web!</p>
       </div>
       <div class="upload-block">
+        <span class="form-heading">Step 1: Add images</span>
+        <hr>
         <div id="drop-area">
           <p>Drag & drop images</p>
         </div>
         <input id="file-input" type="file" accept="image/*" multiple="" class="visually-hidden">
+        <p style="text-align: center">------- OR -------</p>
         <button id="upload-button" class="secondary-button">Upload files</button>
       </div>
-      <div class="file-counter hidden">
-        <p>5 images ready for cropping</p>
-      </div>
       <div class="resolution-select hidden">
-        <span class="form-heading">Choose a size</span>
+        <span class="form-heading">Step 2: Choose sizes and adjust cropping</span>
         <hr>
         <label for="resolution-dropdown">Image size</label>
         <span class="field-info">For image size reference, consult our <a href="https://www.msmu.edu/component-library/content-types/" target="_blank">content type library</a></span>
@@ -50,7 +50,7 @@
         </select>
         
         <br>
-        <span class="form-heading">Or enter a custom size</span>
+        <span class="form-heading" style="font-size: 1rem">Or enter a custom size</span>
         <hr>
         <br>
         <div class="custom-resolution">
@@ -64,6 +64,11 @@
             <input type="number" id="height" autocomplete="off">
           </div>
         </div>
+         <span class="form-heading">Step 3: Apply settings</span>
+        <hr>
+         <div class="file-counter hidden">
+        <p>5 images ready for cropping</p>
+      </div>
         <button id="apply-resolution">Apply resolution</button>
       </div>
       <div class="loader hidden" id="loader"></div>
