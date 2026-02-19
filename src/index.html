@@ -11,6 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/smartcrop/2.0.5/smartcrop.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -25,7 +26,7 @@
         <div id="drop-area">
           <p>Drag & drop images</p>
         </div>
-        <input id="file-input" type="file" accept="image/*" multiple class="visually-hidden" />
+        <input id="file-input" type="file" accept="image/*,.heic,.heif" multiple class="visually-hidden" />
         <p style="text-align: center;">------- OR -------</p>
         <button id="upload-button" class="secondary-button">Upload files</button>
       </div>

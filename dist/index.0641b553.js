@@ -617,28 +617,60 @@ dropArea.addEventListener("dragover", (e)=>{
     dropArea.classList.add("drag-over");
 });
 dropArea.addEventListener("dragleave", ()=>dropArea.classList.remove("drag-over"));
-dropArea.addEventListener("drop", (e)=>{
+dropArea.addEventListener("drop", async (e)=>{
     e.preventDefault();
     dropArea.classList.remove("drag-over");
-    handleIncomingFiles(e.dataTransfer.files);
+    await handleIncomingFiles(e.dataTransfer.files);
     resolutionSelect.classList.remove("hidden");
     updateFileCounter();
 });
 uploadButton.addEventListener("click", ()=>fileInput.click());
-fileInput.addEventListener("change", (e)=>{
-    handleIncomingFiles(e.target.files);
+fileInput.addEventListener("change", async (e)=>{
+    await handleIncomingFiles(e.target.files);
     fileInput.value = "";
 });
 resolutionDropdown.addEventListener("change", schedulePreviewUpdate);
 customResWidth.addEventListener("input", schedulePreviewUpdate);
 customResHeight.addEventListener("input", schedulePreviewUpdate);
-function handleIncomingFiles(fileList) {
-    Array.from(fileList).forEach((file)=>{
+async function handleIncomingFiles(fileList) {
+    const preparedFiles = await Promise.all(Array.from(fileList).map((file)=>prepareFileForProcessing(file)));
+    preparedFiles.filter(Boolean).forEach((file)=>{
         addItem(file);
     });
     resolutionSelect.classList.remove("hidden");
     updateFileCounter();
     schedulePreviewUpdate();
+}
+function isHeicFile(file) {
+    if (!file) return false;
+    const type = (file.type || "").toLowerCase();
+    return type === "image/heic" || type === "image/heif" || /\.hei(c|f)$/i.test(file.name || "");
+}
+async function prepareFileForProcessing(file) {
+    if (!isHeicFile(file)) return file;
+    if (typeof window.heic2any !== "function") {
+        alert("HEIC conversion library failed to load. Please refresh and try again.");
+        return null;
+    }
+    try {
+        const converted = await window.heic2any({
+            blob: file,
+            toType: "image/jpeg",
+            quality: 0.9
+        });
+        const convertedBlob = Array.isArray(converted) ? converted[0] : converted;
+        const baseName = (file.name || "image").replace(/\.[^/.]+$/, "");
+        return new File([
+            convertedBlob
+        ], `${baseName}.jpg`, {
+            type: "image/jpeg",
+            lastModified: file.lastModified || Date.now()
+        });
+    } catch (err) {
+        console.error(`Failed to convert ${file.name} from HEIC:`, err);
+        alert(`Could not convert ${file.name}. Please export it as JPG/PNG and retry.`);
+        return null;
+    }
 }
 function handleFiles(cropSize) {
     if (items.length === 0) {
