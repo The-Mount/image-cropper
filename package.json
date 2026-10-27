@@ -5,6 +5,7 @@
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html --dist-dir ./build --public-url '.' ",
+    "clean-build": "parcel build src/index.html --dist-dir ./build --public-url '.' --no-cache",
     "deploy": "gh-pages -d build"
   },
   "author": "",
