@@ -4,8 +4,7 @@
   "description": "a simple image resizer",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "rm -rf ./build && parcel build src/index.html --dist-dir ./build --public-url '.' ",
-    "clean-build": "rm -rf ./build && parcel build src/index.html --dist-dir ./build --public-url '.' --no-cache",
+    "build": "rm -rf ./build && parcel build src/index.html --dist-dir ./build --public-url '.' --no-cache",
     "deploy": "gh-pages -d build"
   },
   "author": "",
